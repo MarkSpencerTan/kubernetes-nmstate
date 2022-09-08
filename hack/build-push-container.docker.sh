@@ -10,6 +10,7 @@ fi
 hack/init-buildx.sh
 
 ARCHS=${ARCHS:-$(go env GOARCH)}
+ARCHS="amd64 arm64"
 PLATFORM=""
 
 for arch in $ARCHS; do
@@ -17,7 +18,8 @@ for arch in $ARCHS; do
 done
 
 # Remove last ','
-PLATFORM=${PLATFORM::-1}
+PLATFORM=${PLATFORM%?}
+
 
 
 PUSH=--push

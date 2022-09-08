@@ -3,8 +3,8 @@ SHELL := /bin/bash
 PWD = $(shell pwd)
 GO_VERSION = $(shell hack/go-version.sh)
 
-export IMAGE_REGISTRY ?= quay.io
-IMAGE_REPO ?= nmstate
+export IMAGE_REGISTRY ?= docker.io
+IMAGE_REPO ?= kubevirtvrack
 NAMESPACE ?= nmstate
 
 ifeq ($(NMSTATE_PIN), future)

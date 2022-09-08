@@ -190,12 +190,14 @@ func (r *NMStateReconciler) applyHandler(instance *nmstatev1.NMState) error {
 	archNodeSelector := map[string]string{
 		"kubernetes.io/arch": goruntime.GOARCH,
 	}
+	
 	archAndCRNodeSelector := instance.Spec.NodeSelector
 	if archAndCRNodeSelector == nil {
-		archAndCRNodeSelector = map[string]string{}
+		archAndCRNodeSelector = map[string]string{
+			"kubernetes.io/arch": goruntime.GOARCH,
+			"kubernetes.io/os":   "linux",
+		}
 	}
-	archAndCRNodeSelector["kubernetes.io/arch"] = goruntime.GOARCH
-	archAndCRNodeSelector["kubernetes.io/os"] = "linux"
 
 	handlerTolerations := instance.Spec.Tolerations
 	if handlerTolerations == nil {
